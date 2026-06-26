@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Syncpad — Real-Time Collaborative Editor</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">◆</div>
+      <div class="titles">
+        <input id="docTitle" class="doc-title" value="Q3 Launch Plan — shared draft" spellcheck="false" />
+        <div class="subtitle">Real-time collaborative sync engine · CRDT (RGA), built from scratch</div>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <div id="avatars" class="avatars" title="People here now"></div>
+      <button id="netBtn" class="btn net online" title="Simulate losing connection">
+        <span class="dot"></span><span id="netLabel">Online</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <main class="editor-wrap">
+      <div class="paper">
+        <div id="editorStage" class="editor-stage">
+          <div id="cursorLayer" class="cursor-layer"></div>
+          <div id="mirror" class="mirror" aria-hidden="true"></div>
+          <textarea id="editor" class="editor" spellcheck="false"
+            placeholder="Start typing. Open this same page in another window to edit together…"></textarea>
+        </div>
+      </div>
+
+      <div class="statusbar">
+        <span class="stat"><b id="statChars">0</b> chars</span>
+        <span class="stat"><b id="statOps">0</b> ops applied</span>
+        <span class="stat">server seq <b id="statSeq">0</b></span>
+        <span class="stat" id="statPendingWrap" hidden>queued offline: <b id="statPending">0</b></span>
+        <span class="stat propagation" id="statPing">— ms propagation</span>
+      </div>
+    </main>
+
+    <aside class="sidebar">
+      <div class="side-head">
+        <h2>Version history</h2>
+        <span class="hint">click a point to preview · restore to revert</span>
+      </div>
+      <ol id="timeline" class="timeline"></ol>
+
+      <div id="previewPanel" class="preview-panel" hidden>
+        <div class="preview-head">
+          <span>Preview @ <b id="previewVer">v0</b></span>
+          <div class="preview-actions">
+            <button id="restoreBtn" class="btn small primary">Restore this version</button>
+            <button id="closePreview" class="btn small ghost">Close</button>
+          </div>
+        </div>
+        <pre id="previewText" class="preview-text"></pre>
+      </div>
+    </aside>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="crdt.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
