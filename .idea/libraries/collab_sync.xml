@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="collab-sync">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/collab-sync.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
